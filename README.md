@@ -49,3 +49,10 @@ Aula 2 - Cadastro de produtos
 1) Crie um controller específico para os produtos dentro do seu sistema, chamado ProdutosController.
  Nessa classe, crie o método form(), que atende à URL produtos/form. Esse método deve retornar produtos/form, que é justamente o local onde você irá criar o formulário de cadastro de produtos.
  
+2) Crie a view, ou seja, o formulário de cadastro de produtos. Crie a pasta produtos dentro de src/main/webapp/WEB-INF/views/ e dentro dela, crie a página form.jsp.
+
+3) Crie o método gravar() na classe ProdutosController.java, que atenderá à URL casadocodigo/produtos que é justamente o endereço que o formulário está enviando os dados. 
+Esse método será o responsável por receber os dados do formulário, então receba-os por parâmetro e imprima-os dentro do método. 
+O nome dos atributos devem ser exatamente os mesmos valores contidos nos atributos name dos inputs do formulário de cadastro, pois o binding do Spring vincula cada valor de acordo com o seu nome.
+Por fim, esse método deve retornar produtos/ok, que será a página para onde o usuário será enviado.
+ 
