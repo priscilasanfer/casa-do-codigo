@@ -94,4 +94,15 @@ Em seguida, dentro do método gravar() do controller, use o atributo do tipo Pro
 
 15) E para o Spring encontrar a classe JPAConfiguration, adicione-a no método getServletConfigClasses, da classe ServletSpringMVC.
 
+16) Para o Spring gerenciar as transações para nós, adicione a anotação @EnableTransactionManagement na classe JPAConfiguration.
+
+17) Em seguida, adicione um bean que será o gerenciador das transações, isto é, a partir desse bean, o Spring fornecerá as transações para o EntityManager. Adicionando o metodo JpaTransactionManager.
+
+18) O ProdutoDAO é um recurso persistente (persiste dados) dentro do sistema, portanto, anote-o com @Repository. 
+E embora o Spring esteja configurado para gerenciar as transações, ainda é necessário indicar que o ProdutoDAO precisa de uma transação. 
+Faça isso anotando-o com @Transactional.
+
+19) Agora, crie a base de dados casadocodigo no MySQL.
+
+20) Por fim, reinicie o Tomcat e acesse a URL: http://localhost:8080/casadocodigo/produtos/form 
  
