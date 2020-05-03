@@ -43,3 +43,9 @@ A partir dos métodos setPrefix() e setSuffix(), você define o local (WEB-INF/v
 
 15) Por fim, inicie o servidor e acesse http://localhost:8080/casadocodigo/.
 
+
+Aula 2 - Cadastro de produtos
+
+1) Crie um controller específico para os produtos dentro do seu sistema, chamado ProdutosController.
+ Nessa classe, crie o método form(), que atende à URL produtos/form. Esse método deve retornar produtos/form, que é justamente o local onde você irá criar o formulário de cadastro de produtos.
+ 
