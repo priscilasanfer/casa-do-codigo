@@ -22,7 +22,7 @@ public class JPAConfiguration {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUsername("root");
-        dataSource.setPassword("Moip2019"); 
+        dataSource.setPassword("Moip2019");
         dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         factoryBean.setDataSource(dataSource);

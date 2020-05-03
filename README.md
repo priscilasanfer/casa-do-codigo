@@ -84,5 +84,14 @@ Nesse caso, faça com que ele seja auto-incremental, enviando o parâmetro strat
 
 11) Crie a classe JPAConfiguration, que será a responsável por configurar o framework, passando informações relevantes como o banco a ser utilizado, seu usuário e senha, e assim por diante.
 
+12) Crie a classe ProdutoDAO. Dentro dessa classe, faça a comunicação com o banco de dados, adicionando um atributo do tipo EntityManager, e crie o método gravar(), que recebe um produto como parâmetro, e então, a partir do atributo do tipo EntityManager, persista um objeto a partir do método persist(), enviando o parâmetro do tipo Produto como argumento.
+Já que o EntityManager trata-se de um recurso persistente, utilize a anotação @PersistenceContext para que ele seja injetável.
+
+13) Dentro do ProdutosController, crie um atributo do tipo ProdutoDAO e anote com @Autowired, para que ele seja injetado.
+Em seguida, dentro do método gravar() do controller, use o atributo do tipo ProdutoDAO e chame o método gravar(), enviando o produto recebido por parâmetro.
+
+14) Para o Spring encontrar o DAO, adicione-o na anotação @ComponentScan, na classe AppWebConfiguration.
+
+15) E para o Spring encontrar a classe JPAConfiguration, adicione-a no método getServletConfigClasses, da classe ServletSpringMVC.
 
  
