@@ -65,4 +65,9 @@ Por fim, esse método deve retornar produtos/ok, que será a página para onde o
 
 4) ) Ao invés de receber diversos parâmetros no método, o ideal é receber uma classe que representa todos esses eles.
 Então, crie a classe Produto no pacote br.com.casadocodigo.loja.models com os atributos titulo, descricao e paginas, além dos seus getters e setters e de uma implementação do método toString:
+
+5) No método gravar, de ProdutosController, ao invés de passar todos aqueles parâmetros, envie apenas um Produto e imprima-o dentro do método.
+
+6) Agora, crie a view ok.jsp, dentro src/main/webapp/WEB-INF/views/produtos.
+
  
