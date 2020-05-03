@@ -72,4 +72,14 @@ Então, crie a classe Produto no pacote br.com.casadocodigo.loja.models com os a
 
 7) Adicione a dependência do Hibernate ao seu projeto. 
 
+8) Para transformar as classes modelos como entidades do banco de dados, anote-as com @Entity.
+
+9) Além disso, o Hibernate obriga que toda entidade precisa de um id, ou seja, um campo que contenha um valor único para cada registro. 
+Atualmente, a classe Produto não tem nenhum atributo que possa ser um id, portanto, crie mais um atributo, chamado id, do tipo int, e também gere seus getters e setters.
+
+10) Para o Hibernate entender que o atributo id é o id da entidade, adicione a anotação @Id no atributo. 
+Além disso, popule-o antes de persisti-lo, fazendo com que o próprio banco já atribua um valor do id automaticamente, anotando-o com @GeneratedValue.
+Por fim, informe ao Hibernate como ele deve atribuir esse id automaticamente a partir do atributo strategy da anotação @GeneratedValue. 
+Nesse caso, faça com que ele seja auto-incremental, enviando o parâmetro strategy = GenerationType.IDENTITY.
+
  
