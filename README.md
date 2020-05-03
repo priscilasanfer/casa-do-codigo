@@ -82,4 +82,7 @@ Além disso, popule-o antes de persisti-lo, fazendo com que o próprio banco já
 Por fim, informe ao Hibernate como ele deve atribuir esse id automaticamente a partir do atributo strategy da anotação @GeneratedValue. 
 Nesse caso, faça com que ele seja auto-incremental, enviando o parâmetro strategy = GenerationType.IDENTITY.
 
+11) Crie a classe JPAConfiguration, que será a responsável por configurar o framework, passando informações relevantes como o banco a ser utilizado, seu usuário e senha, e assim por diante.
+
+
  
