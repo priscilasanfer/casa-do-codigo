@@ -70,4 +70,6 @@ Então, crie a classe Produto no pacote br.com.casadocodigo.loja.models com os a
 
 6) Agora, crie a view ok.jsp, dentro src/main/webapp/WEB-INF/views/produtos.
 
+7) Adicione a dependência do Hibernate ao seu projeto. 
+
  
