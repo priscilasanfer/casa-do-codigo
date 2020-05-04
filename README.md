@@ -157,7 +157,7 @@ botão de cadastro e adicione.
 
 8) E não esqueça de importar a JSTL através da taglib, antes da tag <html>.
 
-### **Aula 4 - istando os produtos**
+### **Aula 4 - Listando os produtos**
 
 1) Com alguns livros cadastrados no banco de dados, chegou a hora de listá-los. 
 Primeiramente, busque-os na base de dados, então crie o método listar() na classe ProdutoDAO, que devolve uma lista de produtos. 
@@ -182,3 +182,13 @@ apague o prefixo de todos os outros métodos.
 6) Reinicie o Tomcat e acesse http://localhost:8080/casadocodigo/produtos. Na listagem dos produtos, os dados que 
 possuem acentos estão com problemas de apresentação. Então defina qual é o encoding da aplicação, através de um filtro 
 do Spring. Para isso, adicione o  método getServletFilters() na classe ServletSpringMVC.
+
+### **Aula 5 - Redirect com Escopo de Flash**
+
+1) Após a gravação de um produto, envie o usuário para a listagem de produtos. 
+Para isso, na classe ProdutosController, no método gravar, utilize o ModelAndView, passando a string com o prefixo redirect.
+
+2) Faça uso do escopo de Flash para enviar uma mensagem de sucesso, que será exibida após o redirect do navegador, 
+na tela de listagem. Adicione o atributo ${sucesso} na JSP lista.jsp.
+
+3) Agora, no ProdutosController, receba o RedirectAttributes para adicionar o atributo sucesso com escopo de Flash.
