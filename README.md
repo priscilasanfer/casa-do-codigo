@@ -3,7 +3,7 @@
 Curso disponível em: https://cursos.alura.com.br/course/spring-mvc-1-criando-aplicacoes-web  
 
 
-###**Aula 1 - Começando com SpringMVC**
+### **Aula 1 - Começando com SpringMVC**
 
 1) Baixe o JBoss Forge.
 
@@ -54,7 +54,7 @@ Para isso, dentro do diretório src/main/webapp crie o diretório WEB-INF/views,
 15) Por fim, inicie o servidor e acesse http://localhost:8080/casadocodigo/.
 
 
-###**Aula 2 - Cadastro de produtos**
+### **Aula 2 - Cadastro de produtos**
 
 1) Crie um controller específico para os produtos dentro do seu sistema, chamado ProdutosController.
 Nessa classe, crie o método form(), que atende à URL produtos/form. Esse método deve retornar produtos/form, que é 
@@ -127,7 +127,7 @@ Faça isso anotando-o com @Transactional.
 20) Por fim, reinicie o Tomcat e acesse a URL: http://localhost:8080/casadocodigo/produtos/form 
  
  
-###**Aula 3 - Cadastro de preços do produto**
+### **Aula 3 - Cadastro de preços do produto**
 
 1) O tipo do preço de cada livro está limitado a 3 opções (ebook, impresso e combo), portanto, crie a Enum TipoPreco, 
 com os valores EBOOK, IMPRESSO e COMBO.
@@ -157,7 +157,7 @@ botão de cadastro e adicione.
 
 8) E não esqueça de importar a JSTL através da taglib, antes da tag <html>.
 
-###**Aula 4 - istando os produtos**
+### **Aula 4 - istando os produtos**
 
 1) Com alguns livros cadastrados no banco de dados, chegou a hora de listá-los. 
 Primeiramente, busque-os na base de dados, então crie o método listar() na classe ProdutoDAO, que devolve uma lista de produtos. 
