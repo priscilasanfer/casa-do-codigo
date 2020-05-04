@@ -3,7 +3,7 @@
 Curso disponível em: https://cursos.alura.com.br/course/spring-mvc-1-criando-aplicacoes-web  
 
 
-Aula 1 - Começando com SpringMVC
+**Aula 1 - Começando com SpringMVC**
 
 1) Baixe o JBoss Forge.
 
@@ -51,7 +51,7 @@ Para isso, dentro do diretório src/main/webapp crie o diretório WEB-INF/views,
 15) Por fim, inicie o servidor e acesse http://localhost:8080/casadocodigo/.
 
 
-Aula 2 - Cadastro de produtos
+**Aula 2 - Cadastro de produtos**
 
 1) Crie um controller específico para os produtos dentro do seu sistema, chamado ProdutosController.
  Nessa classe, crie o método form(), que atende à URL produtos/form. Esse método deve retornar produtos/form, que é justamente o local onde você irá criar o formulário de cadastro de produtos.
@@ -96,7 +96,8 @@ Em seguida, dentro do método gravar() do controller, use o atributo do tipo Pro
 
 16) Para o Spring gerenciar as transações para nós, adicione a anotação @EnableTransactionManagement na classe JPAConfiguration.
 
-17) Em seguida, adicione um bean que será o gerenciador das transações, isto é, a partir desse bean, o Spring fornecerá as transações para o EntityManager. Adicionando o metodo JpaTransactionManager.
+17) Em seguida, adicione um bean que será o gerenciador das transações, isto é, a partir desse bean, o Spring fornecerá as transações para o EntityManager. 
+Adicionando o metodo JpaTransactionManager.
 
 18) O ProdutoDAO é um recurso persistente (persiste dados) dentro do sistema, portanto, anote-o com @Repository. 
 E embora o Spring esteja configurado para gerenciar as transações, ainda é necessário indicar que o ProdutoDAO precisa de uma transação. 
@@ -106,3 +107,26 @@ Faça isso anotando-o com @Transactional.
 
 20) Por fim, reinicie o Tomcat e acesse a URL: http://localhost:8080/casadocodigo/produtos/form 
  
+ 
+**Aula 3 - Cadastro de preços do produto **
+
+1) O tipo do preço de cada livro está limitado a 3 opções (ebook, impresso e combo), portanto, crie a Enum TipoPreco, com os valores EBOOK, IMPRESSO e COMBO.
+
+2) Crie a classe Preco com o atributo valor, do tipo BigDecimal, e tipo, do tipo TipoPreco. Gere também seus getters e setters desses atributos.
+
+3) Agora, adicione esses preços na classe Produto. Como cada livro pode ter mais de um preço, utilize uma lista. Gere também o getter e setter desse atributo.
+
+4) Anote a classe Preco com @Embeddable, que a permite ser persistida, desde que ela seja um atributo de uma entidade, e no caso ela é um atributo da classe Produto, que é uma entidade.
+
+5) Para indicar que você irá armazenar uma lista de Preco, de uma classe @Embeddable, utilize a anotação @ElementCollection. Portanto, anote o atributo precos da classe Produto.
+
+6) Para adicionar os campos de preço na view, passe os tipos de preço para a JSP. 
+Para isso, utilize o ModelAndView, que, além de carregar a página, permite enviar objetos para a view. 
+No controller ProdutosController, altere o método form() para retornar um ModelAndView no lugar de uma string. 
+Em seguida, crie um objeto dessa classe que retorna a página produtos/form.
+Além de retornar a página, envie o objeto que representa os tipos de preço, através do método addObject, da classe ModelAndView, 
+enviando uma string que indica o nome do objeto como primeiro parâmetro e os valores do objeto como segundo parâmetro.
+
+7) Percorra a lista de tipos para exibir os dados no formulário, usando o forEach da JSTL. Então, em form.jsp, antes do botão de cadastro e adicione.
+
+8) E não esqueça de importar a JSTL através da taglib, antes da tag <html>.
