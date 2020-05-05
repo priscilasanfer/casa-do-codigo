@@ -192,3 +192,33 @@ Para isso, na classe ProdutosController, no método gravar, utilize o ModelAndVi
 na tela de listagem. Adicione o atributo ${sucesso} na JSP lista.jsp.
 
 3) Agora, no ProdutosController, receba o RedirectAttributes para adicionar o atributo sucesso com escopo de Flash.
+
+### **Aula 6 - Validação e conversão de dados**
+
+1) Para realizar a validação dos dados, adicione as dependências do javax.validation e org.hibernate no pom do projeto.
+
+2) Para validar um produto, crie a classe  ProdutoValidation que será responsável por realizar essa validação e implemente
+a interface Validator do Spring. 
+Para adicionar os erros de validação, rejeitar se o campo estiver vazio, você pode usar o método rejectIfEmpty(), da 
+classe ValidationUtils. 
+E no método supports(), você pode usar o método isAssignableFrom() para verificar se classe recebida por parâmetro é de 
+fato um Produto.
+
+3) Para que o ProdutosController possa reconhecer o validador, crie o método initBinder(), que ficará responsável por 
+vincular o validador com o controller. Esse método recebe um WebDataBinder, e então, anote-o com @InitBinder, para que 
+o Spring o chame automaticamente. 
+A partir do parâmetro WebDataBinder, utilize o método addValidators() para adicionar o ProdutoValidation para o ProdutosController:
+
+4) Com a estrutura para realizar a validação pronta, falta executá-la. Ainda no ProdutosController, faça com que o 
+produto seja validado, então vá até o método gravar() e, no parâmetro do tipo Produto, anote com @Valid.
+
+5) Além de validar o produto, você precisa saber quais foram os erros obtidos durante a validação. 
+Para pegá-los, adicione o parâmetro BindingResult no método gravar(). 
+Durante a validação, o Spring vai coletar todos os erros e irá adicionar nesse parâmetro mas para que isso funcione, 
+é necessário adicioná-lo logo em seguida do objeto que será validado, em outras palavras, o BindingResult tem que ser 
+declarado logo após o produto.
+
+6) Por fim, antes de executar qualquer instrução, faça um if, passando como argumento o método hasErrors(), do BindingResult, 
+e se houver erros, retorne o método form(), ou seja, redirecione o usuário para o formulário. Dessa forma, você fará 
+com que o usuário volte para o formulário todas as vezes que ocorrer uma falha de validação.
+
