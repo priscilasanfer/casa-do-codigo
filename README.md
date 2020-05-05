@@ -250,4 +250,24 @@ Para isso, adicione a taglib.
 O controller é referenciado pelas suas letras maiúsculas, então ProdutosController vira PC.
 
 9) Por fim, para que a URL possa ser construída de forma correta, separando os contextos, modifique 
-o @RequestMapping do ProdutosController para /produtos:
+o @RequestMapping do ProdutosController para /produtos.
+
+### **Aula 8 - Trabalhando com datas**
+
+1) Agora que o livro terá data de lançamento, na classe Produto, crie o atributo dataLancamento, do tipo Calendar e 
+adicione a anotação @DateTimeFormat, para que o Spring consiga converter os valores de texto para Calendar. 
+Além disso, gere o getter e setter desse atributo,
+
+2) No formulário form.jsp, logo após a div das páginas, crie mais uma div para representar a data de lancamento.
+
+3) Para não ter que configurar o formato da data por anotações, configure-o através do AppWebConfiguration, criando o 
+método mvcConversionService().
+
+4) E para não perder as informações se um campo estiver inválido, troque as tags do formulário no form.jsp de 
+<input type="text" name="nome" /> para <form:input path="nome" />.
+
+5) Para isso funcionar, faça o método form() do ProdutoController receber um Produto.
+
+6) O método gravar, também do ProdutoController irá apresentar um erro, pois dentro dele há uma chamada para o método form. 
+Então passe um Produto para ele.
+
