@@ -222,3 +222,32 @@ declarado logo após o produto.
 e se houver erros, retorne o método form(), ou seja, redirecione o usuário para o formulário. Dessa forma, você fará 
 com que o usuário volte para o formulário todas as vezes que ocorrer uma falha de validação.
 
+### **Aula 7 - Mais Validações**
+
+1) Para adicionar mensagens de validação no projeto, crie o arquivo que define essas mensagens, conhecido como messages.properties. 
+Ele segue um formato bem parecido com chave/valor. Por exemplo, caso você queira adicionar mensagens para campos que são obrigatórios, 
+basta preencher a chave field.required com o valor Campos obrigatórios. Você também pode definir mensagens mais específicas. 
+Então, na pasta WEB-INF, crie o arquivo messages.properties.
+
+2) Assim que o arquivo for salvo, clique nele com o botão direito do mouse e selecione Properties. 
+Em Text file encoding, verifique se o encoding é UTF-8, caso não seja, altere-o.
+
+3) Para o Spring encontrar o arquivo messages.properties, crie um novo método na classe AppWebConfiguration, que irá retornar 
+o arquivo com algumas configurações. Crie o método messageSource().
+
+4) Para adicionar as mensagens no formulário form.jsp, adicione uma nova taglib.
+
+5) Além disso, substitua a tag <form>.
+Caso esteja usando dependências atualizadas e der o erro Unable to find setter method for attribute: [commandName], 
+troque o commandName para modelAttribute.
+
+6) Adicione as mensagens de erro para os campos de título, descrição e páginas.
+
+7) Por fim, para evitar de ficar mexendo na action do formulário, peça para o Spring preencher a URL para você. 
+Para isso, adicione a taglib.
+
+8) E use o método mvcUrl("controller#metodo").build() para criar a URL.
+O controller é referenciado pelas suas letras maiúsculas, então ProdutosController vira PC.
+
+9) Por fim, para que a URL possa ser construída de forma correta, separando os contextos, modifique 
+o @RequestMapping do ProdutosController para /produtos:
