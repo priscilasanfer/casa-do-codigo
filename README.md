@@ -271,3 +271,26 @@ método mvcConversionService().
 6) O método gravar, também do ProdutoController irá apresentar um erro, pois dentro dele há uma chamada para o método form. 
 Então passe um Produto para ele.
 
+### **Aula 9 - Enviando arquivos para o servidors**
+
+1) Permita que o usuário envie um sumário do livro em PDF. No form.jsp, dentro do formulário, antes do botão de cadastro,
+crie um novo campo do tipo file. Além disso, defina o valor do enctype do formulário para multipart/form-data.
+
+2) Na classe Produto, adicione um atributo chamado sumarioPath do tipo String, juntamente com seu getter e setter.
+
+3) Configure o Spring para trabalhar com arquivos. Na classe AppWebConfiguration, crie o metodo multipartResolver().
+
+4) Além disso, altere a configuração das servlets. Então, na classe ServletSpringMVC, sobrescreva o método customizeRegistration().
+
+5) Crie a lógica de salvar um arquivo. Para isso ,crie a classe FileSaver, no pacote br.com.caelum.loja.infra, com um 
+método chamado write, que deverá salvar o arquivo em uma pasta recebida por parâmetro. Lembre-se que você pode usar o 
+método transferTo da classe MultiPartFile para realizar essa tarefa, e para pegar o caminho completo até a pasta, use 
+um HttpServletRequest, utilizando a anotação @Autowired para o Spring injetar essa dependência.
+
+6) Com a classe criada, use-a no controller. Adicione um novo parâmetro no método gravar, em ProdutosController, 
+chamado sumario, do tipo MultipartFile. Dentro do método, chame o método write, da classe FileSaver, salvando o arquivo 
+na pasta arquivos-sumario. Lembre-se que para tudo funcionar, corretamente o Spring deve injetar um FileSaver.
+
+7) Crie a pasta arquivos-sumario dentro de src/main/webapp/.
+
+8) Por fim, para o Spring encontrar o FileSaver, adicione-o na anotação @ComponentScan, na classe AppWebConfiguration.
