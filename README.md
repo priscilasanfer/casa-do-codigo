@@ -323,3 +323,40 @@ Então edite o método detalhe, adicionando uma variável na rota e usando a ano
 8) Por fim, adicione um link na listagem de produtos (lista.jsp) que irá te direcionar para a página de detalhe do produto. 
 Para construir a URL, use o método mvcUrl. Além disso, invoque o método arg para adicionar um parâmetro à URL. 
 Lembre-se que é preciso fazer o import da taglib para poder usar o mvcUrl.
+
+### **Aula 11 - Expondo atributos no JSP**
+
+1) Ao abrir a página detalhe.jsp, todas as informações são exibidas corretamente, com exceção da data. 
+Isso acontece porque não foi definido como ela deve ser apresentada. Use a tag formatDate para corrigir esse problema. 
+Ela só aceita o tipo Date, então utilize o atributo time da data de lançamento.
+Não esqueça também de adicionar a taglib.
+
+2) Comece a criar o carrinho de compras! Todo carrinho de compras possui vários itens, e cada item é composto, além do 
+próprio produto, do tipo que está sendo comprando (Ebook, Impresso, Combo). 
+Portanto, crie a classe CarrinhoItem no pacote br.com.casadocodigo.loja.models, com os atributos produto e tipoPreco, 
+além dos seus getters e setters. E já que para um CarrinhoItem existir, é preciso tanto do produto quanto o tipoPreco, 
+peça-os por parâmetro no construtor.
+
+3) Com a representação de um item do carrinho, crie o carrinho de fato. Para isso, crie a classe CarrinhoCompras, 
+com um atributo que possua um mapa que armazena o item e a quantidade no carrinho. 
+Crie os métodos add, que adiciona o item no mapa, e getQuantidade, que retorna a quantidade de determinado item.
+
+4) Para tudo funcionar corretamente, reescreva os métodos hashCode e equals, com os atributos produto e tipoPreco, da classe CarrinhoItem.
+
+5) Faça o mesmo para a classe Produto, mas somente com o atributo id.
+
+6) Com as classes do carrinho prontas, é preciso acessá-lo. 
+Crie o controller CarrinhoComprasController para o carrinho  e implemente os métodos add, que irá adicionar um item no carrinho, 
+e crieItem, que irá criar um item para ser adicionado no carrinho. Não esqueça de utilizar as classes que foram criadas anteriormente. 
+E para não se preocupar com a criação dos objetos, peça para o Spring injetá-los (@Autowired).
+
+7) Para ver o carrinho funcionando, mostre a quantidade de itens de do lado do link Carrinho. Na classe CarrinhoCompras, 
+crie o método getQuantidade, que conta os itens do carrinho.
+
+E chame-o na JSP detalhe.jsp.
+
+8) Para enviar o carrinho de compras para a JSP, utilize o método setExposedContextBeanNames, da classe InternalResourceViewResolver, 
+para deixar o carrinho disponível para todas as views. 
+Além disso, para o Spring achar a classe CarrinhoCompras, adicione-a na anotação ComponentScan.
+
+
