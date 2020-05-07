@@ -378,3 +378,30 @@ O último escopo apresentado é o escopo de request, no qual cada vez que acessa
 1) Para a nossa aplicação funcionar corretamente, através da anotação @Scope, altere o escopo da classe CarrinhoCompras para session.
 
 2) E altere o escopo da classe CarrinhoComprasController para request.
+
+### **Aula 13 -  Carrinho de compras**
+
+1) Se você ainda não baixou, faça o download do código fonte da página JSP para renderizar os itens do carrinho 
+aqui: https://s3.amazonaws.com/caelum-online-public/spring-mvc-1-criando-aplicacoes-web/springmvc-arquivos-extras-aula13.zip.
+
+2) Escolha qual JSP usar, renomeie-a para itens.jsp e copie-a para a pasta src/main/webapp/WEB-INF/views/carrinho (que deve ser criada) do seu projeto
+
+3) Copie a imagem excluir.png para a pasta src/main/webapp/resources/imagens da aplicação.
+
+4) Crie o método precoPara na classe Produto para descobrir o preço de um produto de acordo com o tipo.
+
+5) Na classe CarrinhoItem, crie os métodos getTotal, apenas realizando uma multiplicação, e getPreco, que chama 
+o método precoPara da classe Produto.
+
+6) Na classe CarrinhoCompras, crie o método getItens, que irá retornar uma coleção de itens. Na mesma classe, 
+crie também dois métodos getTotal, um que apenas repassa a chamada para o método de mesmo nome da classe 
+CarrinhoItem e outro para saber o total que o usuário está pagando.
+
+7) No CarrinhoComprasController, crie o método itens.
+
+8) Ainda em CarrinhoComprasController, altere o método add para que, em vez do usuário ser redirecionado para a página 
+de produtos, ele seja redirecionado para o carrinho.
+
+10) Por fim, todo componente do Spring que possua escopo de sessão precisa implementar a interface Serializable, 
+então faça isso com a classe CarrinhoCompras.
+
