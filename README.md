@@ -294,3 +294,32 @@ na pasta arquivos-sumario. Lembre-se que para tudo funcionar, corretamente o Spr
 7) Crie a pasta arquivos-sumario dentro de src/main/webapp/.
 
 8) Por fim, para o Spring encontrar o FileSaver, adicione-o na anotação @ComponentScan, na classe AppWebConfiguration.
+
+### **Aula 10 - URLs amigáveis**
+
+1) Baixe o arquivo  "https://s3.amazonaws.com/caelum-online-public/spring-mvc-1-criando-aplicacoes-web/springmvc-arquivos-extras-aula10.zip"
+
+2) Copie o arquivo detalhe.jsp para a pasta src/main/webapp/WEB-INF/views/produtos do seu projeto.
+
+3) Copie toda a pasta resources para a pasta src/main/webapp do seu projeto.
+
+4)  Por padrão, o Spring MVC nega o acesso à pasta resources. 
+Consequentemente, o Tomcat não pode carregar os arquivos CSS (e a página fica sem design). 
+Para liberar o acesso, é preciso fazer duas alterações na classe AppWebConfiguration.
+    - A classe deve estender a classe WebMvcConfigurerAdapter.
+    - A classe deve implementar o método configureDefaultServletHandling para liberar o acesso.
+    
+5) Ajuste o código Java começando pelo ProdutoDAO. Escreva um novo método, chamado find, que recebe o id do produto por 
+parâmetro e retorna o produto com todas as informações preenchidas, inclusive os preços. 
+O método deve executar uma query planejada através do EntityManager, que vai realizar o join entre as tabelas Produto e precos.
+
+6) Ajuste o controller, para carregar a JSP com os dados do produto. 
+Primeiramente, crie o método detalhe, que recebe o id do produto por parâmetro, retorna para a JSP de detalhe e carrega 
+o objeto ModelAndView com um produto.
+
+7) O Spring já traz um sistema de URLs amigáveis, que são URLs que parecem texto e não ficam poluídas com ? e &. 
+Então edite o método detalhe, adicionando uma variável na rota e usando a anotação @PathVariable para mapear essa variável a um parâmetro.
+
+8) Por fim, adicione um link na listagem de produtos (lista.jsp) que irá te direcionar para a página de detalhe do produto. 
+Para construir a URL, use o método mvcUrl. Além disso, invoque o método arg para adicionar um parâmetro à URL. 
+Lembre-se que é preciso fazer o import da taglib para poder usar o mvcUrl.
