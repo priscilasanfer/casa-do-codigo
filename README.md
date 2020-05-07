@@ -360,3 +360,21 @@ para deixar o carrinho disponível para todas as views.
 Além disso, para o Spring achar a classe CarrinhoCompras, adicione-a na anotação ComponentScan.
 
 
+### **Aula 12 - Escopo sessão**
+
+Por padrão, o Spring define que o escopo de todos os componentes é de application, ou seja, apenas uma instância existe 
+desde quando a aplicação foi criada. O principal problema dessa abordagem é esse que acabamos de encontrar, 
+os usuários compartilham sempre os mesmos dados, uma alteração afeta todo mundo que está conectado à nossa aplicação. 
+Para resolver isso, precisamos mudar o escopo do nosso carrinho.
+
+
+Qual a diferença escopo: aplicação, sessão e request?
+O primeiro escopo apresentado é o escopo de aplicação, isto é, desde que o servidor é iniciado, apenas um objeto na 
+memória é manipulado, o que causa conflito quando temos mais de um usuário usando a nossa aplicação. O segundo escopo é 
+o de sessão, no qual o objeto é criado para cada usuário que se conecta à aplicação, ou seja, usuários diferentes usam o
+bjetos diferentes, o que é ideal para um carrinho de compras, uma vez que cada usuário possui o seu próprio carrinho. 
+O último escopo apresentado é o escopo de request, no qual cada vez que acessamos a página, um objeto é criado.
+
+1) Para a nossa aplicação funcionar corretamente, através da anotação @Scope, altere o escopo da classe CarrinhoCompras para session.
+
+2) E altere o escopo da classe CarrinhoComprasController para request.
