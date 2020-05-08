@@ -1,11 +1,12 @@
 package br.com.casadocodigo.loja.controllers;
 
-import br.com.casadocodigo.loja.daos.ProdutoDAO;
+import br.com.casadocodigo.loja.dao.ProdutoDAO;
 import br.com.casadocodigo.loja.infra.FileSaver;
 import br.com.casadocodigo.loja.models.Produto;
 import br.com.casadocodigo.loja.models.TipoPreco;
 import br.com.casadocodigo.loja.validation.ProdutoValidation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -25,7 +26,7 @@ import java.util.List;
 public class ProdutosController {
 
     @Autowired
-    private ProdutoDAO produtoDao;
+    private ProdutoDAO dao;
 
     @Autowired
     private FileSaver fileSaver;
@@ -36,7 +37,7 @@ public class ProdutosController {
     }
 
     @RequestMapping("/form")
-    public ModelAndView form(Produto Produto) {
+    public ModelAndView form(Produto produto) {
 
         ModelAndView modelAndView = new ModelAndView("produtos/form");
         modelAndView.addObject("tipos", TipoPreco.values());
@@ -45,6 +46,7 @@ public class ProdutosController {
     }
 
     @RequestMapping(method=RequestMethod.POST)
+    @CacheEvict(value = "produtosHome", allEntries = true)
     public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
@@ -54,7 +56,7 @@ public class ProdutosController {
         String path = fileSaver.write("arquivos-sumario", sumario);
         produto.setSumarioPath(path);
 
-        produtoDao.gravar(produto);
+        dao.gravar(produto);
 
         redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
 
@@ -63,7 +65,7 @@ public class ProdutosController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView listar(){
-        List<Produto> produtos = produtoDao.listar();
+        List<Produto> produtos = dao.listar();
         ModelAndView modelAndView = new ModelAndView("produtos/lista");
         modelAndView.addObject("produtos", produtos);
         return modelAndView;
@@ -73,7 +75,7 @@ public class ProdutosController {
     public ModelAndView detalhe(@PathVariable("id") Integer id){
 
         ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
-        Produto produto = produtoDao.find(id);
+        Produto produto = dao.find(id);
         modelAndView.addObject("produto", produto);
 
         return modelAndView;

@@ -1,6 +1,6 @@
 package br.com.casadocodigo.loja.controllers;
 
-import br.com.casadocodigo.loja.daos.ProdutoDAO;
+import br.com.casadocodigo.loja.dao.ProdutoDAO;
 import br.com.casadocodigo.loja.models.CarrinhoCompras;
 import br.com.casadocodigo.loja.models.CarrinhoItem;
 import br.com.casadocodigo.loja.models.Produto;
