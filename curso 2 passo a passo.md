@@ -32,3 +32,10 @@ Crie o método cacheManager, retorne o Guava e adicione a anotação @EnableCach
 
 8) Quando um novo produto é cadastrado, ele não aparece na listagem, pois ela está em cache. Então, quando um produto for 
 cadastrado, o cache deve ser atualizado. No método gravar, do ProdutoController, utilize a anotação @CacheEvict para resolver esse problema.
+
+### **Aula 2 - Criação do Serviço Rest**
+
+1) Para exportar o produto como JSON, XML, etc, crie a classe JsonViewResolver, no pacote br.com.casadocodigo.loja.conf, 
+que implemente a interface ViewResolver para atender os pedidos de dados em JSON.
+
+2) Para agrupar todos os viewResolver, crie o método contentNegotiationViewResolver na sua classe AppWebConfiguration.
