@@ -5,17 +5,18 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
+import javax.servlet.ServletRegistration.Dynamic;
 
 public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[0];
+        return new Class[] {SecurityConfiguration.class,
+                AppWebConfiguration.class, JPAConfiguration.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] { AppWebConfiguration.class, JPAConfiguration.class};
+        return new Class[] { };
     }
 
     @Override
@@ -30,8 +31,9 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
         return new Filter[] {encodingFilter};
     }
 
+    //veja tbm https://cursos.alura.com.br/forum/topico-atualizacao-resources-nao-sao-carregados-na-aula-10-58813
     @Override
-    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+    protected void customizeRegistration(Dynamic registration) {
         registration.setMultipartConfig(new MultipartConfigElement(""));
     }
 }

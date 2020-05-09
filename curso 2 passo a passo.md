@@ -76,3 +76,76 @@ como por exemplo <form:input>. Nestes casos, adicione a classe form-group em cad
 cssClass com o valor form-control em cada um dos <form:input>. Além disso, adicione a classe form-control no input 
 do sumário e as classes btn btn-primary no botão de submissão do formulário. E como o Bootstrap já estiliza bem os 
 campos do formulário, remova os atributos cols e rows do campo <form:textarea>, adicionando também um título antes do formulário.
+
+### **Aula 4 - Spring Security**
+
+1) Para criar um login e senha usando o Spring Security, primeiramente adicione as seguintes dependências ao seu pom.xml.
+
+2) Para configurar o Spring Security, crie a classe SpringSecurityFilterConfiguration no pacote br.com.casadocodigo.loja.conf.
+
+3) Também no pacote br.com.casadocodigo.loja.conf, crie a classe SecurityConfiguration, anotando-a com @EnableWebSecurity 
+(a anotação @EnableWebMvcSecurity foi descontinuada).
+
+4) Adicione as classe SecurityConfiguration, AppWebConfiguration e JPAConfiguration no método getRootConfigClasses, da classe ServletSpringMVC.
+
+5) Ainda na classe ServletSpringMVC, deixe o array de classes do método getServletConfigClasses vazio.
+
+6) Habilite as páginas públicas. Para isso, sobrescreva o método configure da classe SecurityConfiguration, para que o 
+acesso a home, detalhes do produto e carrinho estejam sempre liberados. Adicione também a regra para liberar o acesso 
+à pasta resources. Sem essa liberação, os arquivos CSS e imagens não poderão ser carregados. O mesmo aplica se para a URL de pagamentos.
+
+7) Para poder conhecer e trabalhar o usuário, prepare o seu modelo. Para tal, crie as classes Usuario e Role no pacote br.com.casadocodigo.loja.models. 
+O usuário terá um e-mail, senha e nome, além de implementar a interface UserDetails do Spring Security. 
+A classe Role terá apenas um nome e implementa a interface GrantedAuthority. O Usuario e Role devem se associar 
+(List<Role>) para definir as permissões. Use as anotações do JPA para mapear as regras de integridade.
+
+9) Na classe SecurityConfiguration injeto o DAO e sobrescreva o método configure. Nesse método, passe o usuarioDao para 
+o AuthenticationManagerBuilder e defina a criptografia da senha. Para tal, use o método passwordEncoder, que recebe um objeto 
+do tipo BCryptPasswordEncoder.
+
+10) No MySQl, insira um usuário e uma senha. Para facilitar segue o código SQL preparado:
+
+```
+insert into Role values('ROLE_ADMIN');
+
+insert into Usuario (email, nome, senha) values ('admin@casadocodigo.com.br', 'Administrador', '$2a$04$qP517gz1KNVEJUTCkUQCY.JzEoXzHFjLAhPQjrg5iP6Z/UmWjvUhq');
+
+insert into Usuario_Role(Usuario_email, roles_nome) values('admin@casadocodigo.com.br', 'ROLE_ADMIN');
+
+```
+A senha real é 123456.
+
+
+11) Caso você queira gerar a sua própria senha, execute a classe GeraSenha inserindo a senha desejada.
+ O resultado da impressão deve ser inserido no banco de dados.
+
+12) Na página home.jsp, adicione a taglib do Spring Security.
+
+13) Ainda no home.jsp, embrulhe os dois links para listar e cadastrar produtos com security:authorize, testando o role ROLE_ADMIN.
+
+14) Em lista.jsp, adicione a taglib do Spring Security e logo abaixo da ul de listagem e cadastro de produtos, 
+insira uma nova ul com as classes padrões do Bootstrap para criação de um menu alinhado à direita da barra de menu. 
+Dentro da ul, crie uma nova li usando a security:authentication para mostrar o nome do usuário logado.
+
+15) Para evitar um ataque CSRF e trabalhar com um token que identifica o formulário, use em todos os formulários sempre a 
+tag form:form, por exemplo nos arquivos detalhe.jsp e lista.jsp. Por exemplo, onde há:
+```
+<form action='<c:url value="/carrinho/add" />' 
+    method="post" class="container">
+```
+
+Ficará:
+
+```
+<form:form servletRelativeAction="/carrinho/add" 
+    method="post" cssClass="container">
+```
+
+16) Crie a nova página formLogin.jsp dentro da pasta src/main/webapp/WEB_INF/views.
+
+17) Crie um novo controller, no pacote br.com.casadocodigo.loja.controllers, para poder acessar o formulário.
+
+18) Na classe SecurityConfiguration, no método configure(HttpSecurity http) logo após da chamada authenticated(), 
+adicione novas regras login e logout.
+
+19) Na página lista.jsp, no menu de navegação, crie um link Sair que chama a URL /logout.
