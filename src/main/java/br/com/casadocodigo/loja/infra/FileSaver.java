@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
 
 @Component
 public class FileSaver {
@@ -21,7 +22,7 @@ public class FileSaver {
 
             return baseFolder + "/" + file.getOriginalFilename();
 
-        } catch (Exception e) {
+        } catch (IllegalStateException | IOException e) {
             throw new RuntimeException(e);
         }
 

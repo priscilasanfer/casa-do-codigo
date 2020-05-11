@@ -149,3 +149,20 @@ Ficará:
 adicione novas regras login e logout.
 
 19) Na página lista.jsp, no menu de navegação, crie um link Sair que chama a URL /logout.
+
+
+### **Aula 5 - Views com Template**
+
+1) Agora que você já conhece o include, isole o cabeçalho e o rodapé da aplicação. 
+Primeiramente, crie o cabecalho.jsp dentro de src/main/webapp/WEB-INF/views/.
+
+2) Agora, o rodape.jsp.
+
+3) Nas páginas detalhe.jsp, home.jsp e itens.jsp, apague todo o código referente ao cabeçalho e ao rodapé.
+
+4) Dentro de src/main/webapp/WEB-INF/, crie a pasta tags e dentro dela, crie uma JSP Tag, com nome de pageTemplate.tag.
+
+5) Faça o mesmo para a página detalhe.jsp.
+
+6) E para a página itens.jsp.
+

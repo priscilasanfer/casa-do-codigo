@@ -44,6 +44,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
 
+        // resolver.setExposeContextBeansAsAttributes(true);
         resolver.setExposedContextBeanNames("carrinhoCompras");
 
         return resolver;
@@ -95,7 +96,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
         GuavaCacheManager manager = new GuavaCacheManager();
         manager.setCacheBuilder(builder);
 
-        return manager;
+        return manager; //new ConcurrentMapCacheManager();
     }
 
     @Bean

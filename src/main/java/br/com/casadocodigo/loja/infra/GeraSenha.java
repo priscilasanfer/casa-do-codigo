@@ -1,3 +1,5 @@
+package br.com.casadocodigo.loja.infra;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class GeraSenha {
