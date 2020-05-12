@@ -166,3 +166,17 @@ Primeiramente, crie o cabecalho.jsp dentro de src/main/webapp/WEB-INF/views/.
 
 6) E para a página itens.jsp.
 
+### **Aula 6 - i18n**
+
+1) Agora que você já sabe como trabalhar com mais de um idioma, crie dois arquivos: um em português e outro em inglês. 
+Eles seguem a mesma estrutura de chave/valor do message.properties.
+Crie o arquivo messages_pt.properties.
+Crie o arquivo messages_en_US.properties.
+
+2) No arquivo cabecalho.jsp, caso ainda não tenha, adicione a seguinte taglib.
+
+3) Ainda em cabecalho.jsp, utilize a tag <fmt:message> aonde tem que exibir o conteúdo.
+
+4) E após a li de Perguntas Frequentes, adicione mais duas.
+
+5) Agora, crie os métodos addInterceptors e localeResolver na nossa classe AppWebConfiguration.
