@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Produto implements Serializable {
     private int paginas;
 
     @ElementCollection
-    private List<Preco> precos;
+    private List<Preco> precos = new ArrayList<>();
 
     @DateTimeFormat
     private Calendar dataLancamento;

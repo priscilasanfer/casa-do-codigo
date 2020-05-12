@@ -180,3 +180,30 @@ Crie o arquivo messages_en_US.properties.
 4) E após a li de Perguntas Frequentes, adicione mais duas.
 
 5) Agora, crie os métodos addInterceptors e localeResolver na nossa classe AppWebConfiguration.
+
+
+### **Aula 7 - Testando a aplicação**
+
+1) Para que o JUnit fique disponível no seu projeto, adicione o o jnunit, o spring-test e o spring-security-test
+ dentro do seu arquivo pom.xml dentro da tag <dependencies>.
+ 
+2) Na classe ProdutoDAO, crie o método somaPrecosPorTipo.
+
+4) Crie a base de dados casadocodigo_test:
+```
+mysql -u root
+mysql> create database casadocodigo_test
+
+```
+
+5) No source folder casadocodigo/src/test/java e no pacote br.com.casadocodigo.loja.conf, crie a classe 
+DataSourceConfigurationTest.
+
+6) Organize melhor a classe JPAConfiguration, separando o código do data source e das properties e dois métodos diferentes. 
+Depois, anote o método dataSource com @Profile("dev").
+
+7) Novamente no source folder casadocodigo/src/test/java e no pacote br.com.casadocodigo.loja.daos, crie a classe de teste ProdutoDAOTest.
+
+8) Na classe ServletSpringMVC, crie o método onStartup.
+ 
+9) No source folder casadocodigo/src/test/java e no pacote br.com.casadocodigo.loja.controllers, crie a classe de teste ProdutosControllerTest.
