@@ -284,4 +284,32 @@ git push heroku master
 ```
 
 11) Agora, crie uma URL aleatória para criar um usuário que permita você acessar o admin do seu sistema da Casa do Código. 
-Então, crie um método no HomeController que realize a inserção dos dados do usuário e permita que ele acesse o sistema
+Então, crie um método no HomeController que realize a inserção dos dados do usuário e permita que ele acesse o sistema.
+
+Lembrando que a URL pode ser qualquer uma, modifique conforme desejar.
+
+12) Além disso, lembre-se de liberar o acesso a esse método na classe de segurança. Então, na classe SecurityConfiguration, 
+no método configure, adicione o código abaixo:
+
+```
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    // não altere nada acima, apenas acrescente a linha abaixo:
+    .antMatchers("/url-magica-maluca-oajksfbvad6584i57j54f9684nvi658efnoewfmnvowefnoeijn").permitAll()
+    // Coloque o código acima antes da linha   >>     .anyRequest().authenticated()
+}
+```
+
+13) Na classe Role, crie dois construtores, um vazio e um que recebe o nome da role.
+
+14) Na classe Usuario, guando um usuário é salvo, garanta que a sua role será gravada também, alterando a anotação @OneToMany do atributo roles.
+
+15) Na classe UsuarioDAO, crie o método gravar.
+
+16) Por fim, realize a publicação do seu novo código para o Heroku com commit e depois push das suas alterações:
+
+```
+git add .
+git commit -m "Sua mensagem de commit"
+git push heroku master
+```
