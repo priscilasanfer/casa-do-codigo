@@ -207,3 +207,30 @@ Depois, anote o método dataSource com @Profile("dev").
 8) Na classe ServletSpringMVC, crie o método onStartup.
  
 9) No source folder casadocodigo/src/test/java e no pacote br.com.casadocodigo.loja.controllers, crie a classe de teste ProdutosControllerTest.
+
+### **Aula 8 - Ajustes finais do projeto**
+
+1) Adicione o XML do Java Mail dentro do seu arquivo pom.xml, dentro da tag <dependencies>.
+
+2) Na classe PagamentoController, crie o método enviaEmailCompraProduto e injete um MailSender.
+
+3) Ainda na classe PagamentoController, no método finalizar, receba um Usuario por parâmetro e anote-o com 
+@AuthenticationPrincipal. Além disso, caso o pagamento seja feito com sucesso, envie um e-mail para o usuário
+
+4) Na classe AppWebConfiguration, crie o método mailSender.
+
+5) Para a exibição dos preços dos produtos, acesse o atributo precos do objeto produto na lista.jsp, adicionando mais uma coluna.
+
+6) Na classe Preco, sobrescreva o seu método toString.
+
+7) Altere a consulta no banco de dados que carrega os produtos, para que utilize o distinct. Na classe ProdutoDAO, no método listar.
+
+8) Mantenha a sessão com o banco de dados aberta até que a visualização da página seja carregada. Para isso, adicione o 
+filtro OpenEntityManagerInViewFilter na cadeia de filtros carregados no método getServletFilters, da classe ServletSpringMVC.
+
+9) Crie a classe ExceptionHandlerController no pacote br.com.casadocodigo.loja.controllers com o método trataExceptionGenerica, 
+que redirecionará o usuário para uma página de erro, além de capturar o objeto gerado com a mensagem de erro, imprimir sua stack trace 
+(pilha de erros) no console e enviar este objeto para a página, onde nos comentários do HTML você imprimirá toda a 
+mensagem de erro para que o usuário ver o que está acontecendo.
+
+10) Crie a página error.jsp em src/main/webapp/WEB-INF/views/ . 

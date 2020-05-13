@@ -3,6 +3,7 @@ package br.com.casadocodigo.loja.models;
 import javax.persistence.Embeddable;
 import java.math.BigDecimal;
 
+
 @Embeddable
 public class Preco {
     private BigDecimal valor;
@@ -22,5 +23,10 @@ public class Preco {
 
     public void setTipo(TipoPreco tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return this.tipo.name() + " - " + this.valor;
     }
 }
