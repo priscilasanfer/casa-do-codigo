@@ -234,3 +234,52 @@ que redirecionará o usuário para uma página de erro, além de capturar o obje
 mensagem de erro para que o usuário ver o que está acontecendo.
 
 10) Crie a página error.jsp em src/main/webapp/WEB-INF/views/ . 
+
+
+### **Aula 9 - Publicando o projeto**
+
+1) Crie sua conta pessoal no Heroku. Acesse o endereço https://www.heroku.com e procure pela opção Sign Up. Preencha com seus dados pessoais e finalize o processo de cadastro para poder continuar.
+
+2) Instale o Heroku CLI, acessando este link e instale o Heroku CLI.
+
+3) Feita a instalação, abra o terminal (ou o Prompt de Comando, se você utilizar Windows) e digite:
+
+```
+heroku login
+```
+
+Feito o login, você deverá ver a mensagem: Authentication successful.
+
+4) Para que o Heroku rode sua aplicação, ela precisa ser uma aplicação executada a partir de um JAR. Use um plugin para 
+realizar esse trabalho. Abra o seu pom.xml e procure pelas tags <plugins> e </plugins>. Dentro dela, depois de qualquer 
+<plugin> que já possa existir .
+
+5) Como o Heroku só suporta atualmente o PostgreSQL, adicione a sua dependência no pom.xml.
+ Abra seu pom.xml e adicione o código abaixo, entre as tags <dependencies> e </dependencies>.
+ 
+6) Na classe JPAConfiguration, faça com que o método additionalProperties seja um @Bean e anote-o com @Profile("dev"). 
+Além disso, receba-o como parâmetro no método entityManagerFactory.
+
+7) Crie a classe JPAProductionConfiguration no pacote br.com.casadocodigo.loja.conf, pegando os dados de conexão pelo 
+Enviroment injetado pelo Spring. Também anote a classe como sendo o profile de produção com @Profile("prod")
+
+8) Na classe ServletSpringMVC, adicione a nova classe de configuração no método getRootConfigClasses. 
+Além disso, comente o método onStartup
+
+9) O Heroku precisa que você crie um arquivo chamado Procfile. Esse arquivo contém a linha de execução da sua aplicação, 
+que o Heroku irá executar. Crie-o na raiz do seu projeto com o seguinte conteúdo.
+
+10) Pelo terminal (ou Prompt de Comando), acesse a pasta raiz do seu projeto, e faça a criação do repositório, 
+o commit e o push do seu código.
+
+11) Agora, crie uma URL aleatória para criar um usuário que permita você acessar o admin do seu sistema da Casa do Código.
+Então, crie um método no HomeController que realize a inserção dos dados do usuário e permita que ele acesse o sistema.
+
+```
+git init
+git add -A
+git commit -m "Sua mensagem de commit"
+heroku apps:create nome-do-seu-projeto
+git push heroku master
+```
+
