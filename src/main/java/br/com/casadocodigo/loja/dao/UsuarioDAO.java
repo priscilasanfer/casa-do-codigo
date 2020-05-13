@@ -4,6 +4,7 @@ import br.com.casadocodigo.loja.models.Usuario;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,5 +28,9 @@ public class UsuarioDAO implements UserDetailsService {
         }
 
         return usuarios.get(0);
+    }
+
+    public void gravar(Usuario usuario) {
+        manager.persist(usuario);
     }
 }

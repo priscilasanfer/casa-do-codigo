@@ -283,3 +283,5 @@ heroku apps:create nome-do-seu-projeto
 git push heroku master
 ```
 
+11) Agora, crie uma URL aleatória para criar um usuário que permita você acessar o admin do seu sistema da Casa do Código. 
+Então, crie um método no HomeController que realize a inserção dos dados do usuário e permita que ele acesse o sistema
